@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      background-color: blue;
+    }
+
+    .item {
+      padding: 40px;
+      border: 5px dashed purple;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .first {
+      background-color: red;
+    }
+
+    .second {
+      background-color: green;
+    }
+
+    .third {
+      background-color: yellow;
+    }
+
+    input[type="checkbox"] {
+      width: 30px;
+      height: 30px;
+      vertical-align: sub;
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    .alert-box {
+      font-size: 22px;
+      color: red;
+      font-weight: bold;
+      animation: fadein 2s;
+    }
+  </style>
+</head>
+<body class="body item">
+  <div class="first item">
+    <div class="second item">
+      <div class="third item">
+        <!-- <button class="fourth item">Click me!</button> -->
+        <input type="checkbox" class="fourth item" required spellcheck="false" checked="true">
+      </div>
+    </div>
+  </div>
+  <script>
+    var events = []
+    var items = document.getElementsByClassName('item')
+    
+    for (var i = 0; i < items.length; i++) {
+      (function(){
+        var y = i;
+        items[y].addEventListener('click', function(event){
+          // alert(y)
+          // if (y === 2) {
+          //   event.stopPropagation()
+          // }
+          // event.preventDefault()
+          
+          console.log(items[y], event)
+        }, true)
+      })()
+    }
+
+    const checkbox = document.getElementsByClassName('fourth item')[0]
+
+    checkbox.addEventListener('change', e => {
+      const time = 3500
+
+      if (!checkbox.checkValidity()) {
+          const alertBox = Object.assign(document.createElement('alert'), {
+            textContent: '* Please agree to the TOS',
+            className: 'alert-box'
+          })
+
+          checkbox.insertAdjacentElement('afterend', alertBox)
+          setTimeout(_ => { alertBox.remove() }, time)
+          return
+      }
+
+      alert('SUCCESS!')
+    })
+  </script>
+</body>
+</html>
