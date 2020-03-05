@@ -58,3 +58,4 @@ var asim = Object.create(Professional, {
 console.log(asim.firstName)
 console.log(asim.fullName())
 console.log(asim.professionalName())
+

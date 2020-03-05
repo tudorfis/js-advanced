@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      background-color: blue;
+    }
+
+    .item {
+      padding: 40px;
+      border: 5px dashed purple;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .first {
+      background-color: red;
+    }
+
+    .second {
+      background-color: green;
+    }
+
+    .third {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body class="body item">
+  <div class="first item">
+    <div class="second item">
+      <div class="third item">
+        <button class="fourth item">Click me!</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    var items = document.getElementsByClassName('item')
+    var isCapturing = true
+    
+    for (var i = 0; i < items.length; i++) {
+      (function(){
+        var y = i;
+        items[y].addEventListener('click', function(event){
+          console.log(items[y], event)
+        }, isCapturing)
+      })()
+    }
+  </script>
+</body>
+</html>
